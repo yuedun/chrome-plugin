@@ -27,7 +27,7 @@
     {
       "js": [
         "scripts/jquery.min.js",
-        "scripts/yuedun-insert.js"
+        "scripts/content.js"
       ],
       "css": [
         "styles/yuedun-insert.css"
