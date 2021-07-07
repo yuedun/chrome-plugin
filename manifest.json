@@ -18,6 +18,7 @@
   "author": "yuedun",
   "background": {
     "scripts": [
+      "scripts/jquery.min.js",
       "scripts/background.js"
     ]
   },
@@ -25,21 +26,22 @@
   "content_scripts": [
     {
       "js": [
+        "scripts/jquery.min.js",
         "scripts/yuedun-insert.js"
       ],
       "css": [
         "styles/yuedun-insert.css"
       ],
       "matches": [
-        "https://portal.qiniu.com/kodo/bucket/resource?bucketName=hopefully"
-      ]
+        "https://portal.qiniu.com/kodo/bucket/resource?bucketName=*"
+      ],
+      "run_at": "document_start"
     }
   ],
   "permissions": [
     "cookies",
-    "http://*/*",
-    "management",
-    "tabs",
-    "contextMenus"
-  ]
+    "*://*/*",
+    "webRequest"
+  ],
+  "homepage_url": "https://www.yuedun.wang"
 }
