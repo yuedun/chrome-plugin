@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "name": "chome-plugin",
+  "version": "0.0.1",
+  "description": "chrome示例插件",
+  "icons": {
+    "16": "images/icon-16x16.png",
+    "48": "images/icon-48x48.png",
+    "128": "images/icon-128x128.png"
+  },
+  "page_action": {
+    "default_icon": {
+      "48": "images/icon-48x48.png"
+    },
+    "default_popup": "html/popup.html",
+    "default_title": "Hello yuedun"
+  },
+  "author": "yuedun",
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
+  "devtools_page": "html/devtools-page.html",
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/yuedun-insert.js"
+      ],
+      "css": [
+        "styles/yuedun-insert.css"
+      ],
+      "matches": [
+        "https://portal.qiniu.com/kodo/bucket/resource?bucketName=hopefully"
+      ]
+    }
+  ],
+  "permissions": [
+    "cookies",
+    "http://*/*",
+    "management",
+    "tabs",
+    "contextMenus"
+  ]
+}
