@@ -7,8 +7,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     newTrs.forEach(element => {
         var tdKey = $(element).data("row-key")
         console.log(tdKey);
-        var filenane = tdKey.substr(4);
-        $(element).find("td:nth-child(2) > .editCell_f2UJB > .content_3-COB > .formatted_2iUZF").before('<img src="https://hopefully-img.yuedun.wang/' + filenane + '?imageMogr2/thumbnail/!20p/" style="width:100px;">')
+        var filenane = tdKey;
+        var image = '<img src="https://hopefully-img.yuedun.wang/' + filenane + '?imageMogr2/thumbnail/!20p/" style="width:100px;">'
+        console.log(image)
+        $(element).find("td:nth-child(2) > .ant-table-row-indent").before(image)
     });
     sendResponse('get the message')
 })

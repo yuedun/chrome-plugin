@@ -32,7 +32,7 @@
         "styles/yuedun-insert.css"
       ],
       "matches": [
-        "https://portal.qiniu.com/kodo/bucket/resource?bucketName=*"
+        "https://portal.qiniu.com/kodo/bucket/resource-v2?bucketName=*"
       ],
       "run_at": "document_start"
     }

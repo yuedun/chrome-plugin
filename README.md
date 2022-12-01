@@ -1,5 +1,5 @@
 # chrome-plugin
-chrome插件开发原型
+七牛图片管理chrome插件
 
 ![七牛图片预览](https://hopefully-img.yuedun.wang/8279d4e2356aa84c9d10bf826ef3cca4)
 ```
