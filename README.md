@@ -4,8 +4,8 @@
 ![七牛图片预览](https://hopefully-img.yuedun.wang/8279d4e2356aa84c9d10bf826ef3cca4)
 ```
 {
-	// 清单文件的版本，这个必须写，而且必须是2
-	"manifest_version": 2,
+	// 清单文件的版本，这个必须写，而且必须是3，2023年起不支持v2版本
+	"manifest_version": 3,
 	// 插件的名称
 	"name": "demo",
 	// 插件的版本
@@ -22,25 +22,17 @@
 	// 会一直常驻的后台JS或后台页面
 	"background":
 	{
-		// 2种指定方式，如果指定JS，那么会自动生成一个背景页
-		"page": "background.html"
-		//"scripts": ["js/background.js"]
+		// 2种指定方式，如果指定JS，那么会自动生成一个背景页，v3版本
+		"service_worker": "js/background.js"
 	},
-	// 浏览器右上角图标设置，browser_action、page_action、app必须三选一
-	"browser_action": 
+	// 浏览器右上角图标设置，browser_action、page_action、app必须三选一，v3统一为action
+	"action": 
 	{
 		"default_icon": "img/icon.png",
 		// 图标悬停时的标题，可选
 		"default_title": "这是一个示例Chrome插件",
 		"default_popup": "popup.html"
 	},
-	// 当某些特定页面打开才显示的图标
-	/*"page_action":
-	{
-		"default_icon": "img/icon.png",
-		"default_title": "我是pageAction",
-		"default_popup": "popup.html"
-	},*/
 	// 需要直接注入页面的JS
 	"content_scripts": 
 	[
@@ -67,14 +59,26 @@
 		"contextMenus", // 右键菜单
 		"tabs", // 标签
 		"notifications", // 通知
-		"webRequest", // web请求
-		"webRequestBlocking",
-		"storage", // 插件本地存储
-		"http://*/*", // 可以通过executeScript或者insertCSS访问的网站
-		"https://*/*" // 可以通过executeScript或者insertCSS访问的网站
+		"webRequest", // web请求，v3版本起不支持
+		"webRequestBlocking",//v3版本起不支持
+		"storage" // 插件本地存储
 	],
+	"host_permissions": [
+		"<all_urls>"
+        "http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+		"https://*/*" // 可以通过executeScript或者insertCSS访问的网站
+    ],
 	// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的
-	"web_accessible_resources": ["js/inject.js"],
+	"web_accessible_resources": [
+    {
+      "resources": [
+        "injected.js"
+      ],
+      "matches": [
+        "https://portal.qiniu.com/*"
+      ]
+    }
+  ],
 	// 插件主页，这个很重要，不要浪费了这个免费广告位
 	"homepage_url": "https://www.baidu.com",
 	// 覆盖浏览器默认页面

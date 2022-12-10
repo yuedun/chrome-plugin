@@ -1,46 +1,55 @@
 {
-  "manifest_version": 2,
-  "name": "chome-plugin",
+  "manifest_version": 3,
+  "name": "qiniu preview",
   "version": "0.0.1",
-  "description": "chrome示例插件",
+  "description": "七牛图片预览",
   "icons": {
     "16": "images/icon-16x16.png",
     "48": "images/icon-48x48.png",
     "128": "images/icon-128x128.png"
   },
-  "page_action": {
+  "action": {
     "default_icon": {
       "48": "images/icon-48x48.png"
     },
-    "default_popup": "html/popup.html",
+    "default_popup": "popup.html",
     "default_title": "Hello yuedun"
   },
   "author": "yuedun",
   "background": {
-    "scripts": [
-      "scripts/background.js"
-    ]
+    "service_worker": "background.js"
   },
   "devtools_page": "html/devtools-page.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "injected.js"
+      ],
+      "matches": [
+        "https://portal.qiniu.com/*"
+      ]
+    }
+  ],
   "content_scripts": [
     {
       "js": [
         "scripts/jquery.min.js",
-        "scripts/content.js"
+        "content.js"
       ],
       "css": [
         "styles/yuedun-insert.css"
       ],
       "matches": [
-        "https://portal.qiniu.com/kodo/bucket/resource-v2?bucketName=*"
+        "<all_urls>"
       ],
       "run_at": "document_start"
     }
   ],
   "permissions": [
-    "cookies",
-    "*://*/*",
-    "webRequest"
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://portal.qiniu.com/*"
   ],
   "homepage_url": "https://www.yuedun.wang"
 }
