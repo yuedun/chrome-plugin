@@ -30,15 +30,16 @@ window.addEventListener('message', function (e) {
     console.log('content script received:', e.data.type, e.data.data);
     var trs = $('.ant-table-tbody tr');
     var size = trs.size();
-    var newTrs = $.makeArray(trs).splice(size - 50, 50)
-    newTrs.forEach(element => {
-        var tdKey = $(element).data("row-key");
-        // console.log(tdKey);
-        var filenane = tdKey;
-        var image = '<img src="http://hopefully-img.yuedun.wang/' + filenane + '?imageMogr2/thumbnail/!20p/" style="width:100px;">'
-        console.log(image)
-        if (!$(element).find("td:nth-child(2) img").length) {
-            $(element).find("td:nth-child(2) > .ant-table-row-indent").before(image)
-        }
-    });
+    var newTrs = $.makeArray(trs).splice(size - 50, 50);
+    chrome.storage.local.get({ domain: '' }, (items) => {
+        newTrs.forEach(element => {
+            var tdKey = $(element).data("row-key");
+            var filenane = tdKey;
+            var image = `<img src="${items.domain}/${filenane}?imageMogr2/thumbnail/!20p/" style="width:100px;">`
+            console.log(image)
+            if (!$(element).find("td:nth-child(2) img").length) {
+                $(element).find("td:nth-child(2) > .ant-table-row-indent").before(image)
+            }
+        });
+    })
 });

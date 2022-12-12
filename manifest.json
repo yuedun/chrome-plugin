@@ -46,7 +46,7 @@
     }
   ],
   "permissions": [
-    "cookies"
+    "storage"
   ],
   "host_permissions": [
     "https://portal.qiniu.com/*"
